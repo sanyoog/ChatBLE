@@ -1,0 +1,16 @@
+.project
+.settings
+.DS_Store
+.classpath
+.idea
+.gradle
+
+build/
+**/build/
+captures/
+release-apks/
+
+*.iml
+local.properties
+gradle.properties
+fabric.properties

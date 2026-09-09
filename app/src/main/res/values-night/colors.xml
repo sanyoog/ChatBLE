@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#A8C7FA</color>
+    <color name="colorPrimaryDark">#0E141E</color>
+    <color name="colorAccent">#A8C7FA</color>
+    <color name="colorAccentLight">#D3E3FD</color>
+
+    <color name="text_dark">#E3E3E3</color>
+    <color name="text_light">#8E918F</color>
+    <color name="text_text_message">#E3E3E3</color>
+    <color name="text_own_message">#E8F0FE</color>
+
+    <color name="background_image">#282A2D</color>
+    <color name="background_own_message">#0842A0</color>
+    <color name="background_foreign_message">#282A2D</color>
+    <color name="background_avatar_default">#0B57D0</color>
+    <color name="background_chat_default">#121316</color>
+
+    <color name="divider_color">#35383D</color>
+    <color name="surface_card">#1E1F22</color>
+    <color name="badge_green">#34A853</color>
+    <color name="badge_red">#EA4335</color>
+</resources>

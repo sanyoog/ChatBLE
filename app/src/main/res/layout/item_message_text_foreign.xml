@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:minWidth="120dp"
+        card_view:cardBackgroundColor="@color/background_foreign_message"
+        card_view:cardCornerRadius="18dp"
+        card_view:cardElevation="0.5dp"
+        card_view:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minWidth="120dp"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/tv_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:textColor="@color/text_text_message"
+                android:textIsSelectable="true"
+                android:textSize="15sp"
+                android:lineSpacingMultiplier="1.1"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="3dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/text_light"
+                android:textSize="11sp"
+                tools:text="12:07" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>
