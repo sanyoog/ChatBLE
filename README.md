@@ -1,51 +1,75 @@
-# Bluetooth Chat
+# ChatBLE
 
-1-to-1 chatting app over Bluetooth
+An offline, peer-to-peer Android messaging app that communicates over standard Bluetooth RFCOMM (SPP) sockets. No internet, cell service, accounts, or backend servers required.
 
-This project is a test area for trying and mastering fancy programming stuff: Kotlin, MVP, DI, Coroutines, testing, Architecture Components, the newest Android features.
+<p align="center">
+  <img src="graphics/featured.png" width="680" alt="ChatBLE Preview" />
+</p>
 
-<a href="https://play.google.com/store/apps/details?id=com.glodanif.bluetoothchat">
-    <img alt="Get it on Google Play"
-        height="80"
-        src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" />
-</a>
+## Overview
 
-<img src="graphics/featured.png"/>
+ChatBLE connects two nearby Android phones directly through Bluetooth. Once paired, devices can exchange instant text messages, see delivery and read receipts, and send compressed images using a custom binary framing protocol over RFCOMM input/output streams.
 
-Localization [![Crowdin](https://d322cqt584bo4o.cloudfront.net/bluetoothchat/localized.svg)](https://crowdin.com/project/bluetoothchat)
---------
-You can help to localize Bluetooth Chat to your language using [Crowdin](https://crowdin.com/project/bluetoothchat)
+The app is built in Kotlin using an MVP architecture with Room for local chat history and a background foreground service that keeps socket connections alive even when the app is minimized.
 
-Third Party Libraries
---------
-* [sticky-headers-recyclerview](https://github.com/timehop/sticky-headers-recyclerview)
-* [Android-RateThisApp](https://github.com/kobakei/Android-RateThisApp)
-* [TextDrawable](https://github.com/amulyakhare/TextDrawable)
-* [EasyImage](https://github.com/jkwiecien/EasyImage)
-* [PhotoView](https://github.com/chrisbanes/PhotoView)
-* [Picasso](https://github.com/square/picasso)
-* [Chroma](https://github.com/ItsPriyesh/chroma)
-* [MockK](https://github.com/oleksiyp/mockk)
-* [Koin](https://github.com/InsertKoinIO/koin)
+## Features
 
-Donations
---------
-Just in case...
+- **P2P Offline Chat**: Direct socket-to-socket messaging without routing through any external network.
+- **Image Sharing**: Chunked binary transfer over Bluetooth with real-time transfer progress and cancellation support.
+- **Message Status Indicators**: Real-time status tracking for sent, delivered, and read receipts.
+- **Interactive Notifications**: Foreground connection service supporting Android quick-reply from notifications and tap-to-accept connection requests.
+- **Local Persistence**: Messages, conversation history, and contact metadata stored locally in SQLite via Room.
+- **Modern UI**: Styled with Material Design 3 aesthetics, including rounded chat bubbles, floating input bar, and full Light/Dark mode support.
+- **APK Beaming**: Share the app's own APK file over Bluetooth from inside the scanner screen so friends nearby can install it without Play Store access.
 
-BTC: 17Uqe6E1kswkmdkQCjTz5owQruHJwxPPsp
+## Architecture & Tech Stack
 
-License
---------
-    Copyright 2017 Vasyl Glodan
+- **Language**: Kotlin
+- **Pattern**: Model-View-Presenter (MVP)
+- **Dependency Injection**: Koin
+- **Local Database**: AndroidX Room (SQLite)
+- **Concurrency**: Kotlin Coroutines + dedicated Java I/O background threads
+- **Image Loading**: Picasso & PhotoView (pinch-to-zoom)
+- **CI/CD**: GitHub Actions workflow automatically building and attaching APKs to GitHub Releases
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+### Wire Protocol
 
-        http://www.apache.org/licenses/LICENSE-2.0
+Messages over the RFCOMM stream are framed as text commands separated by a delimiter (`#`):
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+```
+<type>#<uid>#<flag>#<body>
+```
+
+Payload types handle connection requests, handshakes with avatar/color metadata, delivery confirmations, read receipts, and file transfer boundaries (`FILE_START`, byte stream, `FILE_END`).
+
+## Getting Started
+
+### Prerequisites
+
+- Android Studio (Hedgehog or newer recommended)
+- JDK 11
+- Android SDK with build-tools (minSdkVersion 19, targetSdkVersion 28+)
+- Physical Android device with Bluetooth hardware (emulators do not support physical Bluetooth connections)
+
+### Building the Project
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sanyoog/ChatBLE.git
+   cd ChatBLE
+   ```
+
+2. Build debug APK:
+   ```bash
+   ./gradlew assembleDebug
+   ```
+
+The compiled APK will be generated under `app/build/outputs/apk/debug/app-debug.apk`.
+
+### Prebuilt APKs
+
+Ready-to-install APKs are compiled automatically on every tag and release via GitHub Actions. You can download them directly from the [Releases](https://github.com/sanyoog/ChatBLE/releases) tab.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
