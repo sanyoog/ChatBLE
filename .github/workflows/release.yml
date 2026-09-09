@@ -45,12 +45,19 @@ jobs:
         run: |
           mkdir -p release-apks
           find app/build/outputs/apk/ -name "*.apk" -exec cp {} release-apks/ \;
-          ls -la release-apks/
+          cd release-apks
+          # Ensure primary installable APK is named SagarSetu_BLEC.apk
+          if [ -f SagarSetu_BLEC-debug.apk ]; then
+            cp SagarSetu_BLEC-debug.apk SagarSetu_BLEC.apk
+          elif [ -f app-debug.apk ]; then
+            cp app-debug.apk SagarSetu_BLEC.apk
+          fi
+          ls -la
 
       - name: Upload APKs as Workflow Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ChatBLE-APK
+          name: SagarSetu_BLEC-APK
           path: release-apks/*.apk
 
       - name: Upload APKs to GitHub Release

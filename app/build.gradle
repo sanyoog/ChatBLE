@@ -82,6 +82,12 @@ android {
     packagingOptions {
        exclude 'META-INF/atomicfu.kotlin_module'
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "SagarSetu_BLEC-${variant.buildType.name}.apk"
+        }
+    }
 }
 
 dependencies {
