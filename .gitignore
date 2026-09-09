@@ -12,5 +12,6 @@ release-apks/
 
 *.iml
 local.properties
-gradle.properties
-fabric.properties
+*.log
+logs.zip
+run_logs/
