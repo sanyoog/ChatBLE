@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_chat_default"
     tools:context=".ui.activity.ProfileActivity">
 
     <ScrollView
@@ -11,169 +12,219 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save"
+        app:layout_constraintBottom_toTopOf="@+id/card_bottom_actions"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="20dp"
             android:paddingBottom="24dp">
 
-            <ImageView
-                android:id="@+id/iv_avatar"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="32dp"
-                android:contentDescription="@string/profile__cd__avatar_preview"
-                app:layout_constraintBottom_toTopOf="@+id/tv_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed"
-                tools:src="@tools:sample/avatars" />
+            <!-- Hero Avatar & Identity Section -->
+            <FrameLayout
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:contentDescription="@string/profile__cd__avatar_preview"
+                    tools:src="@tools:sample/avatars" />
+
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                android:fontFamily="sans-serif-medium"
+                android:fontFamily="sans-serif-bold"
                 android:textColor="@color/text_dark"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@+id/et_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
-                tools:text="@tools:sample/full_names" />
+                android:textSize="22sp"
+                tools:text="Tactical Node" />
 
             <TextView
-                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:minWidth="64dp"
-                android:text="@string/profile__name"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/et_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/et_name" />
-
-            <EditText
-                android:id="@+id/et_name"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/shape_chat_input_background"
+                android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif"
-                android:hint="@string/profile__your_name"
-                android:inputType="textCapWords"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"
-                android:textColor="@color/text_dark"
-                android:textColorHint="@color/text_light"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toTopOf="@+id/v_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/barrier2"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+                android:text="Local Bluetooth BLE Node"
+                android:textColor="@color/text_light"
+                android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
+            <!-- Grouped Profile Settings Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:minWidth="64dp"
-                android:text="@string/profile__color"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/v_color"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/v_color" />
+                android:layout_marginTop="28dp"
+                android:background="@drawable/shape_modern_card"
+                android:elevation="1dp"
+                android:orientation="vertical"
+                android:padding="18dp">
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/profile__device"
-                android:textColor="@color/text_dark"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_device_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_device_name" />
+                <!-- Name Input Row -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-bold"
+                    android:text="@string/profile__name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
 
-            <View
-                android:id="@+id/v_color"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_device_name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/barrier2"
-                app:layout_constraintTop_toBottomOf="@+id/et_name"
-                tools:background="@android:color/holo_green_light" />
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_chat_input_background"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/profile__your_name"
+                    android:inputType="textCapWords"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_light"
+                    android:textSize="15sp" />
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="end"
-                app:constraint_referenced_ids="textView4,textView5,textView8"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color" />
 
-            <TextView
-                android:id="@+id/tv_device_name"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="32dp"
-                android:background="?android:selectableItemBackground"
-                android:fontFamily="sans-serif"
-                android:gravity="center_vertical"
-                android:textColor="@color/text_dark"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/barrier2"
-                app:layout_constraintTop_toBottomOf="@+id/v_color"
-                tools:text="Nexus 6P" />
+                <!-- Color Picker Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="@string/profile__color"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Avatar accent color swatch"
+                            android:textColor="@color/text_light"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/shape_tactical_chip"
+                        android:padding="4dp">
+
+                        <View
+                            android:id="@+id/v_color"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:clickable="true"
+                            android:focusable="true"
+                            tools:background="@android:color/holo_blue_dark" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@color/divider_color" />
+
+                <!-- Device Hardware Name Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:text="@string/profile__device"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_device_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"
+                            tools:text="Pixel 8 Pro" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:alpha="0.6"
+                        android:contentDescription="@null"
+                        android:tint="@color/text_light"
+                        app:srcCompat="@drawable/ic_arrow_forward_black_24dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/btn_save"
-        style="@style/MaterialRoundedButton"
+    <!-- Bottom Action Button Bar -->
+    <LinearLayout
+        android:id="@+id/card_bottom_actions"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/profile__save"
+        android:layout_height="wrap_content"
+        android:background="@color/background_chat_default"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btn_save"
+            style="@style/MaterialRoundedButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:elevation="3dp"
+            android:text="@string/profile__save" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

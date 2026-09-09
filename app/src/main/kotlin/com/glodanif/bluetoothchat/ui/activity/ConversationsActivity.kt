@@ -199,7 +199,8 @@ class ConversationsActivity : SkeletonActivity(), ConversationsView {
     override fun onStart() {
         super.onStart()
 
-        if (ContextCompat.checkSelfPermission(this,
+        if (Build.VERSION.SDK_INT < 29 &&
+                ContextCompat.checkSelfPermission(this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && !storagePermissionDialog.isShowing) {
             storagePermissionDialog.show()
         }

@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingStart="24dp"
+    android:paddingTop="28dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="20dp">
 
-    <ImageView
+    <FrameLayout
         android:layout_width="72dp"
         android:layout_height="72dp"
-        android:layout_marginTop="24dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ftue_files" />
+        android:background="@drawable/shape_radar_container">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_insert_drive_file_white_24dp" />
+    </FrameLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-bold"
+        android:text="Storage Access Required"
+        android:textColor="@color/text_dark"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:lineSpacingMultiplier="1.2"
         android:text="@string/general__storage_permission"
-        android:textColor="@color/text_dark"
-        android:textSize="15sp" />
+        android:textColor="@color/text_light"
+        android:textSize="14sp" />
+
 </LinearLayout>

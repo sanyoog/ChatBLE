@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - main
   release:
     types: [published, created]
   workflow_dispatch:
@@ -62,10 +64,10 @@ jobs:
 
       - name: Upload APKs to GitHub Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release' || github.event_name == 'workflow_dispatch'
+        if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'release' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
         with:
           files: release-apks/*.apk
-          tag_name: v1.3.2
+          tag_name: v1.3.3
           draft: false
           prerelease: false
           generate_release_notes: true

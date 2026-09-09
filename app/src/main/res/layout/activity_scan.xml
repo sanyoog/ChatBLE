@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_chat_default"
     tools:context=".ui.activity.ScanActivity">
 
     <FrameLayout
@@ -19,9 +20,10 @@
             android:id="@+id/fl_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#66000000"
+            android:background="#80000000"
             android:clickable="true"
             android:focusable="true"
+            android:elevation="8dp"
             android:visibility="gone">
 
             <ProgressBar
@@ -36,105 +38,116 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"
             tools:visibility="visible">
 
-            <TextView
-                android:id="@+id/tv_info"
+            <!-- Sleek Radar & Controls Header Card -->
+            <LinearLayout
+                android:id="@+id/card_radar_header"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:lineSpacingMultiplier="1.2"
-                android:text="@string/scan__start_scanning"
-                android:textColor="@color/text_light"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.glodanif.bluetoothchat.ui.widget.ExpiringProgressBar
-                android:id="@+id/epb_progress"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toStartOf="@+id/tv_discovery_label"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_info"
-                tools:visibility="visible" />
-
-            <TextView
-                android:id="@+id/tv_discovery_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="@string/scan__scanning"
-                android:textColor="@color/text_dark"
-                android:textSize="15sp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/epb_progress"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/epb_progress"
-                app:layout_constraintTop_toTopOf="@+id/epb_progress"
-                tools:visibility="visible" />
-
-            <Button
-                android:id="@+id/btn_scan"
-                style="@style/MaterialRoundedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/scan__scan_for_devices"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/btn_make_discoverable"
-                app:layout_constraintTop_toBottomOf="@+id/epb_progress" />
-
-            <Button
-                android:id="@+id/btn_make_discoverable"
-                style="@style/MaterialOutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/scan__make_discoverable"
-                app:layout_constraintLeft_toRightOf="@+id/btn_scan"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/epb_progress" />
-
-            <View
-                android:id="@+id/textView7"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/divider_color"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_radar_container"
+                android:elevation="2dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_scan" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@string/scan__start_scanning"
+                    android:textColor="@color/text_light"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.glodanif.bluetoothchat.ui.widget.ExpiringProgressBar
+                        android:id="@+id/epb_progress"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tv_discovery_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:background="@drawable/shape_pill_badge_blue"
+                        android:fontFamily="sans-serif-bold"
+                        android:paddingStart="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="4dp"
+                        android:text="@string/scan__scanning"
+                        android:textColor="@color/badge_blue"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_scan"
+                        style="@style/MaterialRoundedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:text="@string/scan__scan_for_devices" />
+
+                    <Button
+                        android:id="@+id/btn_make_discoverable"
+                        style="@style/MaterialOutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:text="@string/scan__make_discoverable" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_paired_devices"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/card_radar_header"
                 tools:listitem="@layout/item_paired_device" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!-- Turn Bluetooth On Fallback -->
         <LinearLayout
             android:id="@+id/ll_turn_on"
             android:layout_width="match_parent"
@@ -142,38 +155,39 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="32dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="parent">
+            android:visibility="gone">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/shape_squircle_icon"
-                android:padding="16dp"
-                android:tint="@color/colorPrimary"
-                app:srcCompat="@drawable/ic_bluetooth_black_24dp" />
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_radar_container">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:tint="@color/colorAccent"
+                    app:srcCompat="@drawable/ic_bluetooth_black_24dp" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
+                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.2"
                 android:text="@string/scan__turn_bluetooth_on"
                 android:textColor="@color/text_dark"
-                android:textSize="15sp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/btn_turn_on"
                 style="@style/MaterialRoundedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/scan__turn_on" />
 
         </LinearLayout>
@@ -183,47 +197,81 @@
         android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="12dp"
         android:background="@color/divider_color"
-        app:layout_constraintBottom_toTopOf="@+id/barrier3"
+        app:layout_constraintBottom_toTopOf="@+id/card_share"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView6"
+    <!-- Modern Bottom Share APK Card -->
+    <LinearLayout
+        android:id="@+id/card_share"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="12dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/scan__share_apk"
-        android:textColor="@color/text_dark"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_share"
-        app:layout_constraintEnd_toStartOf="@+id/iv_share"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_share" />
-
-    <ImageView
-        android:id="@+id/iv_share"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="12dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/scan__cd__share_apk_file_button"
-        android:padding="12dp"
-        android:tint="@color/colorPrimary"
+        android:background="@drawable/shape_modern_card"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_share_black_24dp" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/scan__share_apk"
+                android:textColor="@color/text_dark"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="sans-serif"
+                android:text="Send installer offline via Bluetooth"
+                android:textColor="@color/text_light"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_device_icon_squircle">
+
+            <ImageView
+                android:id="@+id/iv_share"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/scan__cd__share_apk_file_button"
+                android:padding="9dp"
+                android:tint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_share_black_24dp" />
+        </FrameLayout>
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="textView6,iv_share"
+        app:constraint_referenced_ids="card_share"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

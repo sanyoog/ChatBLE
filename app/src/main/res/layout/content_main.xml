@@ -25,10 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingTop="6dp"
-            android:paddingBottom="80dp"
-            tools:listitem="@layout/item_conversation"
-            tools:itemCount="3"/>
+            android:paddingTop="8dp"
+            android:paddingBottom="88dp"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_conversation" />
 
         <LinearLayout
             android:id="@+id/ll_empty_holder"
@@ -37,23 +37,29 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="32dp"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="visible">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/shape_squircle_icon"
-                android:padding="16dp"
-                android:tint="@color/colorPrimary"
-                app:srcCompat="@drawable/ic_bluetooth_black_24dp" />
+            <FrameLayout
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_radar_container">
+
+                <ImageView
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_gravity="center"
+                    android:tint="@color/colorAccent"
+                    app:srcCompat="@drawable/ic_bluetooth_black_24dp" />
+            </FrameLayout>
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="sans-serif"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.2"
                 android:text="@string/conversations__no_conversations"

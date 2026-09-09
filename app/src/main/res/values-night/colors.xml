@@ -27,4 +27,13 @@
     <color name="badge_blue_bg">#0C4A6E</color>
     <color name="badge_red">#F87171</color>
     <color name="status_delivered">#10B981</color>
+    <color name="surface_card_elevated">#162032</color>
+    <color name="surface_card_muted">#0F172A</color>
+    <color name="card_border_subtle">#334155</color>
+    <color name="radar_pulse_tint">#38BDF8</color>
+    <color name="radar_bg">#082F49</color>
+    <color name="tag_bg">#1E293B</color>
+    <color name="primary_pill_bg">#1E293B</color>
+    <color name="primary_pill_text">#FFFFFF</color>
+    <color name="color_brand_blue">#38BDF8</color>
 </resources>

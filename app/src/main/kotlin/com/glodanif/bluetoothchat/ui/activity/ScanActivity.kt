@@ -71,23 +71,16 @@ class ScanActivity : SkeletonActivity(), ScanView {
         }
 
         scanForDevicesButton.setOnClickListener {
-
-            if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            if (hasScanPermissions()) {
                 presenter.scanForDevices()
             } else {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                    explainAskingLocationPermission()
-                } else {
-                    ActivityCompat.requestPermissions(this,
-                            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_LOCATION_PERMISSION)
-                }
+                requestScanPermissions()
             }
         }
 
         findViewById<ImageView>(R.id.iv_share).setOnClickListener {
-            if (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            if (android.os.Build.VERSION.SDK_INT >= 29 ||
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 presenter.shareApk()
             } else {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -256,10 +249,38 @@ class ScanActivity : SkeletonActivity(), ScanView {
         }
     }
 
+    private fun hasScanPermissions(): Boolean {
+        return if (android.os.Build.VERSION.SDK_INT >= 31) {
+            ContextCompat.checkSelfPermission(this, "android.permission.BLUETOOTH_SCAN") == PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(this, "android.permission.BLUETOOTH_CONNECT") == PackageManager.PERMISSION_GRANTED
+        } else {
+            ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    private fun requestScanPermissions() {
+        if (android.os.Build.VERSION.SDK_INT >= 31) {
+            val permissions = arrayOf("android.permission.BLUETOOTH_SCAN", "android.permission.BLUETOOTH_CONNECT")
+            val needRationale = permissions.any { ActivityCompat.shouldShowRequestPermissionRationale(this, it) }
+            if (needRationale) {
+                explainAskingLocationPermission()
+            } else {
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_LOCATION_PERMISSION)
+            }
+        } else {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                explainAskingLocationPermission()
+            } else {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_LOCATION_PERMISSION)
+            }
+        }
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
 
         if (requestCode == REQUEST_LOCATION_PERMISSION) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            val allGranted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
+            if (allGranted) {
                 presenter.scanForDevices()
             } else {
                 explainAskingLocationPermission()
@@ -277,8 +298,12 @@ class ScanActivity : SkeletonActivity(), ScanView {
         AlertDialog.Builder(this)
                 .setMessage(R.string.scan__permission_explanation_location)
                 .setPositiveButton(R.string.general__ok) { _, _ ->
-                    ActivityCompat.requestPermissions(this,
-                            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_LOCATION_PERMISSION)
+                    val permissions = if (android.os.Build.VERSION.SDK_INT >= 31) {
+                        arrayOf("android.permission.BLUETOOTH_SCAN", "android.permission.BLUETOOTH_CONNECT")
+                    } else {
+                        arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+                    }
+                    ActivityCompat.requestPermissions(this, permissions, REQUEST_LOCATION_PERMISSION)
                 }
                 .show()
     }
