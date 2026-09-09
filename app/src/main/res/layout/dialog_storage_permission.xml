@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:contentDescription="@null"
             android:tint="@color/colorAccent"
-            app:srcCompat="@drawable/ic_insert_drive_file_white_24dp" />
+            app:srcCompat="@drawable/ic_attach_file_24dp" />
     </FrameLayout>
 
     <TextView
