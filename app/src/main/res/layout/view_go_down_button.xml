@@ -9,7 +9,7 @@
         android:id="@+id/fab_go_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/chat__scroll_down"
+        android:contentDescription="@string/chat__cd__scroll_down"
         app:backgroundTint="@color/surface_card"
         app:elevation="4dp"
         app:fabSize="mini"
