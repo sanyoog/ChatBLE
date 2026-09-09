@@ -10,7 +10,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.crashlytics.android.Crashlytics
 import com.glodanif.bluetoothchat.data.model.BluetoothConnector
 import com.glodanif.bluetoothchat.data.model.ProfileManager
 import com.glodanif.bluetoothchat.data.model.UserPreferences
@@ -20,7 +19,6 @@ import com.glodanif.bluetoothchat.ui.activity.ConversationsActivity
 import com.glodanif.bluetoothchat.ui.util.StartStopActivityLifecycleCallbacks
 import com.glodanif.bluetoothchat.ui.util.ThemeHolder
 import com.kobakei.ratethisapp.RateThisApp
-import io.fabric.sdk.android.Fabric
 import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
@@ -42,10 +40,6 @@ class ChatApplication : Application(), LifecycleObserver, ThemeHolder {
 
     override fun onCreate() {
         super.onCreate()
-
-        if (!BuildConfig.DEBUG) {
-            Fabric.with(this, Crashlytics())
-        }
 
         startKoin(this, listOf(applicationModule,
                 bluetoothConnectionModule, databaseModule, localStorageModule, viewModule))

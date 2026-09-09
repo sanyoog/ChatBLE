@@ -96,9 +96,6 @@
         <service android:name=".data.service.BluetoothConnectionService" />
 
         <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="b26de0978fcc0fa56349d97da37b554f54e1d034" />
-        <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 

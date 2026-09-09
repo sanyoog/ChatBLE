@@ -8,6 +8,9 @@ on:
     types: [published, created]
   workflow_dispatch:
 
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
+
 jobs:
   build:
     name: Build APK
@@ -20,7 +23,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 11
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '11'
