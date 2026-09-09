@@ -22,14 +22,14 @@
     </style>
 
     <style name="ActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">19sp</item>
-        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
     </style>
 
     <style name="ActionBar.SubTitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
-        <item name="android:textColor">#D0E1FD</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 

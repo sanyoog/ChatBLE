@@ -9,9 +9,16 @@
         android:id="@+id/tb_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:theme="@style/AppTheme.AppBarOverlay"
+        android:background="@color/surface_card"
+        android:elevation="1dp"
+        app:titleTextColor="@color/text_dark"
+        app:subtitleTextColor="@color/text_light"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_color" />
 
     <FrameLayout
         android:id="@+id/fl_content_container"

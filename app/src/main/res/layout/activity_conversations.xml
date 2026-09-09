@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_chat_default"
     tools:context=".ui.activity.ConversationsActivity">
 
     <include layout="@layout/content_main" />
 
+    <!-- FAB for Quick Scan / New Chat -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_new_conversation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="76dp"
         android:contentDescription="@string/conversations__scan"
         app:backgroundTint="@color/colorPrimary"
         app:elevation="6dp"
@@ -21,27 +24,38 @@
         app:srcCompat="@drawable/ic_add_black_24dp"
         app:tint="@android:color/white" />
 
+    <!-- 5-Item Bottom Navigation Bar Repositioning Main Menu -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <include layout="@layout/layout_bottom_navigation" />
+    </FrameLayout>
+
+    <!-- Clean Modern Top App Bar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/surface_card"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="2dp">
+        app:elevation="1dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/surface_card"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif-medium"
-                android:maxWidth="160dp"
+                android:fontFamily="sans-serif-bold"
+                android:maxWidth="200dp"
                 android:text="@string/main_title"
-                android:textColor="@android:color/white"
+                android:textColor="@color/text_dark"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -70,10 +84,16 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="6dp"
                     android:contentDescription="@string/conversations__cd__settings_button"
-                    android:tint="@android:color/white"
+                    android:tint="@color/text_dark"
                     app:srcCompat="@drawable/ic_more_vert_black_24dp" />
 
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color" />
+
     </com.google.android.material.appbar.AppBarLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

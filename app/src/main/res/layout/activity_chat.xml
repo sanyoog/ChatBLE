@@ -23,8 +23,8 @@
         android:id="@+id/bottomLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?android:colorBackground"
-        android:elevation="4dp"
+        android:background="@color/surface_card"
+        android:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -37,10 +37,23 @@
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="12dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="8dp">
+            android:paddingTop="10dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="10dp">
 
+            <!-- Attachment Button: Squircle Paperclip -->
+            <ImageButton
+                android:id="@+id/ib_image"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/shape_chat_header_button"
+                android:contentDescription="@string/chat__cd__send_image_button"
+                android:padding="10dp"
+                android:tint="@color/text_dark"
+                app:srcCompat="@drawable/ic_attach_file_24dp" />
+
+            <!-- Message Input Field: Pill Container -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,8 +62,8 @@
                 android:gravity="center_vertical"
                 android:minHeight="44dp"
                 android:orientation="horizontal"
-                android:paddingStart="14dp"
-                android:paddingEnd="8dp">
+                android:paddingStart="16dp"
+                android:paddingEnd="12dp">
 
                 <EditText
                     android:id="@+id/et_message"
@@ -68,32 +81,37 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
+            <!-- Send Button Switcher: Airplane Icon -->
             <ViewSwitcher
                 android:id="@+id/vs_send_buttons"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="8dp"
                 android:layout_weight="0"
                 android:inAnimation="@anim/switcher_scale_in"
                 android:outAnimation="@anim/switcher_scale_out">
 
+                <!-- Inactive Send Button (when empty) -->
                 <ImageButton
-                    android:id="@+id/ib_image"
+                    android:id="@+id/ib_send_muted"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/chat__cd__send_image_button"
-                    android:tint="@color/colorPrimary"
-                    app:srcCompat="@drawable/ic_photo" />
+                    android:background="@drawable/shape_chat_header_button"
+                    android:contentDescription="@string/chat__cd__send_text_button"
+                    android:padding="10dp"
+                    android:tint="#94A3B8"
+                    app:srcCompat="@drawable/ic_send_black_24dp" />
 
+                <!-- Active Send Button (when text entered): Dark Navy Pill -->
                 <ImageButton
                     android:id="@+id/ib_send"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:background="@drawable/shape_active_nav_tab"
                     android:contentDescription="@string/chat__cd__send_text_button"
-                    android:tint="@color/colorPrimary"
+                    android:padding="10dp"
+                    android:tint="@android:color/white"
                     app:srcCompat="@drawable/ic_send_black_24dp" />
 
             </ViewSwitcher>
@@ -103,7 +121,7 @@
             android:id="@+id/ll_image_sending_holder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:colorBackground"
+            android:background="@color/surface_card"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="12dp"
@@ -115,7 +133,7 @@
                 android:layout_height="52dp"
                 android:layout_marginEnd="14dp"
                 android:layout_weight="0"
-                android:background="@drawable/shape_squircle_icon"
+                android:background="@drawable/shape_chat_header_button"
                 android:contentDescription="@string/chat__cd__transferring_image"
                 android:scaleType="centerInside" />
 
@@ -175,7 +193,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="12dp"
                 android:layout_weight="0"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:background="@drawable/shape_chat_header_button"
                 android:contentDescription="@string/chat__cd__cancel_image_transfer"
                 android:padding="8dp"
                 app:srcCompat="@drawable/ic_close" />
@@ -197,8 +215,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
             app:stackFromEnd="true"
             tools:listitem="@layout/item_message_text_foreign" />
 
@@ -241,7 +259,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="4dp"
-                android:background="@drawable/shape_squircle_icon"
+                android:background="@drawable/shape_chat_header_button"
                 android:contentDescription="@string/chat__cd__preshare_image"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

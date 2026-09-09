@@ -1,64 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:gravity="start"
+    android:orientation="vertical"
+    android:paddingStart="12dp"
+    android:paddingEnd="64dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
-    <androidx.cardview.widget.CardView
+    <!-- Header: Sender Badge & Timestamp -->
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginBottom="4dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="4dp"
-        card_view:cardBackgroundColor="@color/background_foreign_message"
-        card_view:cardCornerRadius="16dp"
-        card_view:cardElevation="0.5dp"
-        card_view:cardPreventCornerOverlap="false">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="6dp">
+            android:background="@drawable/shape_pill_badge_gray"
+            android:fontFamily="sans-serif-black"
+            android:paddingStart="6dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="2dp"
+            android:text="NODE"
+            android:textColor="@color/text_dark"
+            android:textSize="10sp"
+            android:textStyle="bold" />
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/text_light"
+            android:textSize="11sp"
+            tools:text="16:03" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_missing_file"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_chat_input_background"
-                    android:padding="12dp"
-                    android:textSize="13sp"
-                    android:visibility="gone" />
+    <!-- Incoming Image Bubble: Bordered Frame -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        card_view:cardBackgroundColor="@color/background_foreign_message"
+        card_view:cardCornerRadius="16dp"
+        card_view:cardElevation="0dp"
+        card_view:cardPreventCornerOverlap="false">
 
-                <ImageView
-                    android:id="@+id/iv_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/chat__cd__received_image"
-                    android:scaleType="centerCrop"
-                    tools:src="@tools:sample/backgrounds/scenic" />
-            </FrameLayout>
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_incoming_bubble"
+            android:padding="4dp">
 
             <TextView
-                android:id="@+id/tv_date"
+                android:id="@+id/tv_missing_file"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginEnd="6dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/text_light"
-                android:textSize="11sp"
-                tools:text="12:07" />
+                android:background="@drawable/shape_chat_input_background"
+                android:padding="12dp"
+                android:textColor="@color/text_dark"
+                android:textSize="13sp"
+                android:visibility="gone" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_image"
+                android:layout_width="220dp"
+                android:layout_height="180dp"
+                android:contentDescription="@string/chat__cd__received_image"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/backgrounds/scenic" />
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
-</FrameLayout>
+
+    <!-- Incoming Transmission Footer -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/chat__mesh_status_foreign"
+        android:textColor="@color/status_delivered"
+        android:textSize="11sp" />
+
+</LinearLayout>

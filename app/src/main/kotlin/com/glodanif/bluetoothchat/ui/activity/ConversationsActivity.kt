@@ -96,6 +96,28 @@ class ConversationsActivity : SkeletonActivity(), ConversationsView {
             settingsPopup.show(it)
         }
 
+        findViewById<View>(R.id.tab_scan)?.setOnClickListener {
+            ScanActivity.startForResult(this, REQUEST_SCAN)
+        }
+
+        findViewById<View>(R.id.tab_images)?.setOnClickListener {
+            ReceivedImagesActivity.start(this, address = null)
+        }
+
+        findViewById<View>(R.id.tab_chat)?.setOnClickListener {
+            if (conversationsAdapter.itemCount > 0) {
+                conversationsList.smoothScrollToPosition(0)
+            }
+        }
+
+        findViewById<View>(R.id.tab_profile)?.setOnClickListener {
+            ProfileActivity.start(this, editMode = true)
+        }
+
+        findViewById<View>(R.id.tab_settings)?.setOnClickListener {
+            SettingsActivity.start(this)
+        }
+
         if (intent.action == Intent.ACTION_SEND && intent.type != null) {
 
             var textToShare: String? = null
